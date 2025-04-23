@@ -37,7 +37,6 @@ Allows new users to register and create an account. Returns a JWT for authentica
       "lastname": "Doe"
     },
     "email": "john.doe@example.com"
-    // ... other user properties
   }
 }
 ```
@@ -68,7 +67,6 @@ Allows new users to register and create an account. Returns a JWT for authentica
       "path": "password",
       "location": "body"
     }
-    // ... other validation errors
   ]
 }
 ```

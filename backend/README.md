@@ -1,56 +1,18 @@
-Sure! Here's the complete `README.md` file in a single block for easy copy-pasting:
+# User Registration Endpoint
 
----
+## Description
 
-```markdown
-# 🚀 User Authentication API
+Allows new users to register and create an account. Returns a JWT for authentication and the user object upon successful registration.
 
-A simple backend API for user authentication built with Node.js, Express, MongoDB, and JWT. This project includes user registration with input validation, password hashing, and token-based authentication.
+## HTTP Method
 
----
+`POST`
 
-## 📌 Base URL
-```
+## Endpoint URL
 
-http://localhost:5000
+`/api/auth/register`
 
-```
-
----
-
-## 📍 Endpoint: `POST /user/register`
-
-This endpoint registers a new user.
-
-### ✅ Description
-
-- Validates incoming data using `express-validator`.
-- Hashes the password securely using `bcrypt`.
-- Saves the user to the MongoDB database.
-- Returns a JWT token and user information (excluding the password).
-
----
-
-### 🔐 Request Headers
-
-```
-
-Content-Type: application/json
-
-````
-
----
-
-### 📝 Request Body
-
-| Field                 | Type   | Required | Description                                |
-|----------------------|--------|----------|--------------------------------------------|
-| `fullname.firstname` | String | ✅        | First name (min 3 characters)              |
-| `fullname.lastname`  | String | ❌        | Last name (optional, min 3 characters)     |
-| `email`              | String | ✅        | Must be a valid email                      |
-| `password`           | String | ✅        | Must be at least 6 characters              |
-
-#### 🧪 Example:
+## Request Body
 
 ```json
 {
@@ -59,128 +21,54 @@ Content-Type: application/json
     "lastname": "Doe"
   },
   "email": "john.doe@example.com",
-  "password": "strongpassword"
+  "password": "securePassword123"
 }
-````
+```
 
----
-
-### 🟢 Success Response
-
-**Code:** `201 Created`
+## 201 Created
 
 ```json
 {
-  "token": "<jwt-token>",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDQ0YWYxMjM0Z...",
   "user": {
-    "_id": "1234567890",
+    "_id": "6444YWYxMjM0Z...",
     "fullname": {
       "firstname": "John",
       "lastname": "Doe"
     },
     "email": "john.doe@example.com"
+    // ... other user properties
   }
 }
 ```
 
----
-
-### 🔴 Error Responses
-
-#### 400 Bad Request (Validation Errors)
+## 400 Bad Request
 
 ```json
 {
   "errors": [
     {
+      "type": "field",
+      "value": "",
       "msg": "Invalid Email",
-      "param": "email",
+      "path": "email",
+      "location": "body"
+    },
+    {
+      "type": "field",
+      "value": "Jo",
+      "msg": "First name must be atleast 3 characters long",
+      "path": "fullname.firstname",
+      "location": "body"
+    },
+    {
+      "type": "field",
+      "value": "12345",
+      "msg": "Password must be atleast 6 characters long",
+      "path": "password",
       "location": "body"
     }
+    // ... other validation errors
   ]
 }
-```
-
-#### 500 Internal Server Error
-
-```json
-{
-  "error": "Something went wrong. Please try again later."
-}
-```
-
----
-
-## 📦 Technologies Used
-
-- Node.js
-- Express.js
-- MongoDB (via Mongoose)
-- bcrypt
-- JWT
-- express-validator
-
----
-
-## 💡 Setup Instructions
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/your-username/your-repo.git
-   cd your-repo
-   ```
-
-2. Install dependencies:
-
-   ```bash
-   npm install
-   ```
-
-3. Create a `.env` file:
-
-   ```
-   DB_CONNECT=mongodb+srv://<username>:<password>@cluster.mongodb.net/dbname
-   JWT_SECRET=your_jwt_secret
-   ```
-
-4. Start the server:
-   ```bash
-   npm start
-   ```
-
----
-
-## 🔐 Environment Variables
-
-| Variable     | Required | Description                |
-| ------------ | -------- | -------------------------- |
-| `DB_CONNECT` | ✅       | MongoDB connection URI     |
-| `JWT_SECRET` | ✅       | Secret key for signing JWT |
-
----
-
-## 📂 Project Structure
-
-```
-/controllers
-  └── user.controller.js
-/models
-  └── user.model.js
-/services
-  └── user.service.js
-/routes
-  └── user.route.js
-/app.js
-/server.js
-```
-
----
-
-## 📬 Author
-
-Made by [Your Name] – [GitHub](https://github.com/your-username)
-
-```
-
 ```

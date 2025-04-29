@@ -132,3 +132,89 @@ Allows existing users to log in to their account. Returns a JWT for authenticati
   ]
 }
 ```
+
+# User Logout Endpoint
+
+## Description
+
+Invalidates the user's current authentication token. This implementation assumes a client-side approach where the token is discarded by the client. The server might implement additional logic (e.g., blacklisting tokens) for more robust logout functionality.
+
+## HTTP Method
+
+`POST`
+
+## Endpoint URL
+
+`/api/auth/logout`
+
+## Request Headers
+
+`Authorization: Bearer <JWT>` (The JWT to be invalidated)
+
+## 200 OK
+
+```json
+{
+  "message": "Logged out successfully"
+}
+```
+
+## 401 Unauthorized
+
+Returned if the provided JWT is invalid or missing.
+
+```json
+{
+  "message": "Unauthorized"
+}
+```
+
+---
+
+# Get User Profile Endpoint
+
+## Description
+
+Retrieves the profile information of the authenticated user. Requires a valid JWT for authentication.
+
+## HTTP Method
+
+`GET`
+
+## Endpoint URL
+
+`/api/auth/profile`
+
+## Request Headers
+
+`Authorization: Bearer <JWT>` (The JWT of the user whose profile is being requested)
+
+## Request Body
+
+_(Empty)_ No request body is required.
+
+## 200 OK
+
+```json
+{
+  "_id": "6444YWYxMjM0Z...",
+  "fullname": {
+    "firstname": "John",
+    "lastname": "Doe"
+  },
+  "email": "john.doe@example.com",
+  "createdAt": "2023-04-23T10:00:00.000Z",
+  "updatedAt": "2023-04-23T10:30:00.000Z",
+  "__v": 0
+}
+```
+
+## 401 Unauthorized
+
+Returned if the provided JWT is invalid or missing.
+
+```json
+{
+  "message": "Unauthorized"
+}
+```

@@ -1,0 +1,20 @@
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEzNzZmNmM1OWNjMTY4NTM1ZDMwNGIiLCJpYXQiOjE3NDYxMDYxMDIsImV4cCI6MTc0NjE5MjUwMn0.OHoskf3_Mqu6H95kFZYhTPiYkZXeJcWs4W5iypFq_LY",
+  "captain": {
+    "fullname": {
+      "firstname": "test_captain_firstname",
+      "lastname": "test_captain_lastname"
+    },
+    "email": "test_email@gmail.com",
+    "password": "$2b$10$80orO29eV4Tfg8U9Yt99Ke0itcCITci/rzmHWqFI1Z5yxdO1y/PF6",
+    "status": "inactive",
+    "vehicle": {
+      "color": "red",
+      "plate": "MP 04 XY 6204",
+      "capacity": 3,
+      "vehicleType": "car"
+    },
+    "_id": "681376f6c59cc168535d304b",
+    "__v": 0
+  }
+}

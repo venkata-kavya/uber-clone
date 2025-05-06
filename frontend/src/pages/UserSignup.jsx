@@ -5,15 +5,23 @@ import { Link } from "react-router-dom";
 const UserSignup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [captainData, setCaptainData] = useState({});
+  const [first, setFirst] = useState("");
+  const [last, setLast] = useState("");
+  const [userData, setUserData] = userData({});
 
   const submitHandler = (e) => {
     e.preventDefault();
 
-    setCaptainData({
+    setUserData({
+      username: {
+        first: first,
+        last: last,
+      },
       email: email,
       password: password,
     });
+    setFirst("");
+    setLast("");
     setEmail("");
     setPassword("");
   };
@@ -26,38 +34,54 @@ const UserSignup = () => {
           }}
         >
           <img className="w-16 mb-10 ml-1" src={uberLogo} alt="uber-logo" />
-          <h3 className="text-base font-inter font-medium mb-2">
+          <h3 className="text-lg font-inter font-medium mb-2">
             What's your name
           </h3>
           <div className="flex gap-4 mb-6">
             <input
               required
-              className="bg-[#eeeeee] w-1/2 rounded px-4 mt-1 py-2  text-lg placeholder:text-sm"
+              className="bg-[#eeeeee] w-1/2 rounded px-4 mt-1 py-2  text-lg placeholder:text-base"
               type="text"
               placeholder="First name"
+              value={first}
+              onChange={(e) => {
+                setFirst(e.target.value);
+              }}
             />
             <input
               required
-              className="bg-[#eeeeee] w-1/2 rounded px-4 mt-1 py-2  text-lg placeholder:text-sm"
+              className="bg-[#eeeeee] w-1/2 rounded px-4 mt-1 py-2  text-lg placeholder:text-base"
               type="text"
               placeholder="Last name"
+              value={last}
+              onChange={(e) => {
+                setLast(e.target.value);
+              }}
             />
           </div>
 
-          <h3 className="text-base font-inter font-medium mb-2">
+          <h3 className="text-lg font-inter font-medium mb-2">
             What's your email
           </h3>
           <input
             required
-            className="bg-[#eeeeee] rounded mb-6 px-4 mt-1 py-2  w-full text-lg placeholder:text-sm"
+            className="bg-[#eeeeee] rounded mb-6 px-4 mt-1 py-2  w-full text-lg placeholder:text-base"
             type="email"
             placeholder="email@example.com"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
           ></input>
-          <h3 className="text-base font-medium mb-2">Enter Password</h3>
+          <h3 className="text-lg font-medium mb-2">Enter Password</h3>
           <input
-            className="bg-[#eeeeee] mb-6 rounded px-4 mt-1 py-2  w-full text-lg placeholder:text-sm"
+            className="bg-[#eeeeee] mb-6 rounded px-4 mt-1 py-2  w-full text-lg placeholder:text-base"
             type="password"
             placeholder="password"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
           ></input>
           <button className="bg-[#111] text-[#fff] font-semibold mb-5 rounded px-4 py-2  w-full text-lg placeholder:text-sm">
             Login
@@ -71,12 +95,11 @@ const UserSignup = () => {
         </p>
       </div>
       <div>
-        <Link
-          to="/captain-signup"
-          className="bg-[#10b461] flex items-center justify-center text-[#fff] font-semibold mb-7 rounded px-4 py-2  w-full text-lg placeholder:text-base"
-        >
-          Sign up as Captain
-        </Link>
+        <p className="text-[10px] leading-tight text-gray-500">
+          By proceeding, you consent to get calls, WhatsApp or SMS messages,
+          including by automated means, from Uber and its affiliates to the
+          number provided.
+        </p>
       </div>
     </div>
   );

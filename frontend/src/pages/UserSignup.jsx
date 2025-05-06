@@ -7,7 +7,7 @@ const UserSignup = () => {
   const [password, setPassword] = useState("");
   const [first, setFirst] = useState("");
   const [last, setLast] = useState("");
-  const [userData, setUserData] = userData({});
+  const [userData, setUserData] = useState({});
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -96,9 +96,17 @@ const UserSignup = () => {
       </div>
       <div>
         <p className="text-[10px] leading-tight text-gray-500">
-          By proceeding, you consent to get calls, WhatsApp or SMS messages,
-          including by automated means, from Uber and its affiliates to the
-          number provided.
+          This site is protected by reCAPTCHA and the{" "}
+          <a
+            target="_blank"
+            href="https://d1nyezh1ys8wfo.cloudfront.net/static/PDFs/Legal_PDFs/2019-07+Uber+Privacy+Notice.pdf"
+          >
+            <span className="text-blue-400 underline">
+              Google Privacy Policy
+            </span>
+          </a>{" "}
+          and <span className="text-blue-400 underline">Terms of Service</span>{" "}
+          apply
         </p>
       </div>
     </div>

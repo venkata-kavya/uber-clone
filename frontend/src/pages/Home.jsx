@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <div>
       <div
-        className=" h-screen pt-8 w-full flex flex-col justify-between bg-red-400"
+        className=" h-screen pt-8 w-full flex flex-col justify-between"
         style={{
           backgroundImage: `url(${trafficLight})`,
           backgroundSize: "cover",

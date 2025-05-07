@@ -5,23 +5,23 @@ import { Link } from "react-router-dom";
 const CaptainSignup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [first, setFirst] = useState("");
+  const [last, setLast] = useState("");
   const [userData, setUserData] = useState({});
 
   const submitHandler = (e) => {
     e.preventDefault();
 
     setUserData({
-      fullName: {
-        firstName: firstName,
-        lastName: lastName,
+      username: {
+        first: first,
+        last: last,
       },
       email: email,
       password: password,
     });
-    setFirstName("");
-    setLastName("");
+    setFirst("");
+    setLast("");
     setEmail("");
     setPassword("");
   };
@@ -35,7 +35,7 @@ const CaptainSignup = () => {
         >
           <img className="w-16 mb-10 ml-1" src={uberDriver} alt="uber-logo" />
           <h3 className="text-lg font-inter font-medium mb-2">
-            What's our Captain's name
+            What's your name
           </h3>
           <div className="flex gap-4 mb-6">
             <input
@@ -43,9 +43,9 @@ const CaptainSignup = () => {
               className="bg-[#eeeeee] w-1/2 rounded px-4 mt-1 py-2  text-lg placeholder:text-base"
               type="text"
               placeholder="First name"
-              value={firstName}
+              value={first}
               onChange={(e) => {
-                setFirstName(e.target.value);
+                setFirst(e.target.value);
               }}
             />
             <input
@@ -53,15 +53,15 @@ const CaptainSignup = () => {
               className="bg-[#eeeeee] w-1/2 rounded px-4 mt-1 py-2  text-lg placeholder:text-base"
               type="text"
               placeholder="Last name"
-              value={lastName}
+              value={last}
               onChange={(e) => {
-                setLastName(e.target.value);
+                setLast(e.target.value);
               }}
             />
           </div>
 
           <h3 className="text-lg font-inter font-medium mb-2">
-            What's our Captain's email
+            What's your email
           </h3>
           <input
             required

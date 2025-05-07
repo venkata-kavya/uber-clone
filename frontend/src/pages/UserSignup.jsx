@@ -7,8 +7,8 @@ import { UserDataContext } from "../context/UserContext";
 const UserSignup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [first, setFirst] = useState("");
+  const [last, setLast] = useState("");
   const [userData, setUserData] = useState({});
 
   const navigate = useNavigate();
@@ -18,28 +18,14 @@ const UserSignup = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    const newUser = {
-      fullname: {
-        firstname: firstName,
-        lastname: lastName,
+    setUserData({
+      fullName: {
+        firstName: firstName,
+        lastName: lastName,
       },
       email: email,
       password: password,
-    };
-
-    const response = await axios.post(
-      `${import.meta.env.VITE_BASE_URL}/user/register`,
-      newUser
-    );
-
-    if (response.status == 201) {
-      const data = response.data;
-
-      setUser(data.user);
-
-      navigate("/home");
-    }
-
+    });
     setFirstName("");
     setLastName("");
     setEmail("");
@@ -63,9 +49,9 @@ const UserSignup = () => {
               className="bg-[#eeeeee] w-1/2 rounded px-4 mt-1 py-2  text-lg placeholder:text-base"
               type="text"
               placeholder="First name"
-              value={firstName}
+              value={first}
               onChange={(e) => {
-                setFirstName(e.target.value);
+                setFirst(e.target.value);
               }}
             />
             <input
@@ -73,9 +59,9 @@ const UserSignup = () => {
               className="bg-[#eeeeee] w-1/2 rounded px-4 mt-1 py-2  text-lg placeholder:text-base"
               type="text"
               placeholder="Last name"
-              value={lastName}
+              value={last}
               onChange={(e) => {
-                setLastName(e.target.value);
+                setLast(e.target.value);
               }}
             />
           </div>

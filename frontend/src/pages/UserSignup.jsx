@@ -5,23 +5,23 @@ import { Link } from "react-router-dom";
 const UserSignup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [first, setFirst] = useState("");
-  const [last, setLast] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [userData, setUserData] = useState({});
 
   const submitHandler = (e) => {
     e.preventDefault();
 
     setUserData({
-      username: {
-        first: first,
-        last: last,
+      fullName: {
+        firstName: firstName,
+        lastName: lastName,
       },
       email: email,
       password: password,
     });
-    setFirst("");
-    setLast("");
+    setFirstName("");
+    setLastName("");
     setEmail("");
     setPassword("");
   };
@@ -43,9 +43,9 @@ const UserSignup = () => {
               className="bg-[#eeeeee] w-1/2 rounded px-4 mt-1 py-2  text-lg placeholder:text-base"
               type="text"
               placeholder="First name"
-              value={first}
+              value={firstName}
               onChange={(e) => {
-                setFirst(e.target.value);
+                setFirstName(e.target.value);
               }}
             />
             <input
@@ -53,9 +53,9 @@ const UserSignup = () => {
               className="bg-[#eeeeee] w-1/2 rounded px-4 mt-1 py-2  text-lg placeholder:text-base"
               type="text"
               placeholder="Last name"
-              value={last}
+              value={lastName}
               onChange={(e) => {
-                setLast(e.target.value);
+                setLastName(e.target.value);
               }}
             />
           </div>

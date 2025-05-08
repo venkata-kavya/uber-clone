@@ -5,6 +5,8 @@ import UserLogin from "./pages/UserLogin";
 import UserSignup from "./pages/UserSignup";
 import CaptainLogin from "./pages/CaptainLogin";
 import CaptainSignup from "./pages/CaptainSignup";
+import { UserDataContext } from "./context/UserContext";
+import Home from "./pages/Home";
 
 const App = () => {
   const user = useContext(UserDataContext);

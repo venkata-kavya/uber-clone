@@ -48,6 +48,14 @@ const App = () => {
             </CaptainProtectWrapper>
           }
         />
+        <Route
+          path="/captain/logout"
+          element={
+            <UserProtectWrapper>
+              <UserLogout />
+            </UserProtectWrapper>
+          }
+        />
       </Routes>
     </div>
   );

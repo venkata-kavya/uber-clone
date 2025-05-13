@@ -4,13 +4,19 @@ import uberMap from "../assets/uberMap.png";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import "remixicon/fonts/remixicon.css";
+import LocationSearchPanel from "../components/LocationSearchPanel";
+import uberCar from "../assets/uberCar.png";
+import uberBike from "../assets/uberBike.png";
+import uberAuto from "../assets/uberAuto.png";
 
 const Home = () => {
   const [pickup, setPickup] = useState("");
   const [destination, setDestination] = useState("");
   const [panelOpen, setPanelOpen] = useState(false);
+  const [vehiclePanel, setVehiclePanel] = useState(false);
   const panelRef = useRef(null);
   const panelCloseRef = useRef(null);
+  const vehiclePanelRef = useRef(null);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -21,6 +27,7 @@ const Home = () => {
       if (panelOpen) {
         gsap.to(panelRef.current, {
           height: "80%",
+          padding: 24,
           opacity: 1,
         });
         gsap.to(panelCloseRef.current, {
@@ -29,7 +36,7 @@ const Home = () => {
       } else {
         gsap.to(panelRef.current, {
           height: "0%",
-          opacity: 0,
+          padding: 0,
         });
         gsap.to(panelCloseRef.current, {
           opacity: 0,
@@ -39,8 +46,23 @@ const Home = () => {
     [panelOpen]
   );
 
+  useGSAP(
+    function () {
+      if (vehiclePanel) {
+        gsap.to(vehiclePanelRef.current, {
+          transform: "translateY(0)",
+        });
+      } else {
+        gsap.to(vehiclePanelRef.current, {
+          transform: "translateY(100%)",
+        });
+      }
+    },
+    [vehiclePanel]
+  );
+
   return (
-    <div className="h-screen relative">
+    <div className="h-screen relative overflow-hidden">
       <img
         className="w-16 absolute left-5 top-5"
         src={uberLogo}
@@ -71,7 +93,7 @@ const Home = () => {
               submitHandler(e);
             }}
           >
-            <div className="line absolute h-16 w-1 top-[45%] left-10 bg-gray-700 rounded-full"></div>
+            <div className="line absolute h-16 w-[3px] top-[45%] left-10 bg-black opacity-80 rounded-full"></div>
             <input
               onClick={() => {
                 setPanelOpen(true);
@@ -98,7 +120,63 @@ const Home = () => {
             />
           </form>
         </div>
-        <div ref={panelRef} className="opacity-0 h-0 bg-red-300"></div>
+        <div ref={panelRef} className="h-0 bg-white">
+          <LocationSearchPanel
+            vehiclePanel={vehiclePanel}
+            setVehiclePanel={setVehiclePanel}
+          />
+        </div>
+      </div>
+
+      <div
+        ref={vehiclePanelRef}
+        className="fixed w-full z-10 bottom-0 bg-white p-3 py-6 flex flex-col gap-3 translate-y-full"
+      >
+        <h3 className="text-2xl font-semibold mb-2 px-1">Choose a Vehicle</h3>
+        <div className="flex w-full items-center justify-between p-3 border-gray-100 active:border-black active:border-2 rounded-xl">
+          <img className="h-10" src={uberCar} alt="car" />
+          <div className=" w-1/2">
+            <h4 className="font-medium text-lg">
+              UberGo{" "}
+              <span>
+                <i className="ri-user-fill">4</i>
+              </span>
+            </h4>
+            <h5 className="font-medium text-sm">2 mins away</h5>
+            <p className="text-gray-600 text-xs">Affordable, compact rides</p>
+          </div>
+          <h2 className="text-lg font-semibold">$29.30</h2>
+        </div>
+
+        <div className="flex w-full items-center justify-between p-3 border-gray-100 active:border-black active:border-2 rounded-xl">
+          <img className="h-14" src={uberBike} alt="car" />
+          <div className=" w-1/2">
+            <h4 className="font-medium text-lg">
+              Moto{" "}
+              <span>
+                <i className="ri-user-fill">1</i>
+              </span>
+            </h4>
+            <h5 className="font-medium text-sm">3 mins away</h5>
+            <p className="text-gray-600 text-xs">Affordable, motorcycle ride</p>
+          </div>
+          <h2 className="text-lg font-semibold">$9.30</h2>
+        </div>
+
+        <div className="flex w-full items-center justify-between p-3 border-gray-100 active:border-2 active:border-black rounded-xl">
+          <img className="h-14" src={uberAuto} alt="car" />
+          <div className=" w-1/2">
+            <h4 className="font-medium text-lg">
+              UberAuto{" "}
+              <span>
+                <i className="ri-user-fill">3</i>
+              </span>
+            </h4>
+            <h5 className="font-medium text-sm">3 mins away</h5>
+            <p className="text-gray-600 text-xs">Affordable, auto rides</p>
+          </div>
+          <h2 className="text-lg font-semibold">$19.30</h2>
+        </div>
       </div>
     </div>
   );

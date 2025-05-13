@@ -13,7 +13,7 @@ const Home = () => {
   const [pickup, setPickup] = useState("");
   const [destination, setDestination] = useState("");
   const [panelOpen, setPanelOpen] = useState(false);
-  const [vehiclePanel, setVehiclePanel] = useState(false);
+  const [vehiclePanelOpen, setVehiclePanelOpen] = useState(false);
   const panelRef = useRef(null);
   const panelCloseRef = useRef(null);
   const vehiclePanelRef = useRef(null);
@@ -48,7 +48,7 @@ const Home = () => {
 
   useGSAP(
     function () {
-      if (vehiclePanel) {
+      if (vehiclePanelOpen) {
         gsap.to(vehiclePanelRef.current, {
           transform: "translateY(0)",
         });
@@ -58,7 +58,7 @@ const Home = () => {
         });
       }
     },
-    [vehiclePanel]
+    [vehiclePanelOpen]
   );
 
   return (
@@ -122,16 +122,26 @@ const Home = () => {
         </div>
         <div ref={panelRef} className="h-0 bg-white">
           <LocationSearchPanel
-            vehiclePanel={vehiclePanel}
-            setVehiclePanel={setVehiclePanel}
+            panelOpen={panelOpen}
+            setPanelOpen={setPanelOpen}
+            vehiclePanelOpen={vehiclePanelOpen}
+            setVehiclePanelOpen={setVehiclePanelOpen}
           />
         </div>
       </div>
 
       <div
         ref={vehiclePanelRef}
-        className="fixed w-full z-10 bottom-0 bg-white p-3 py-6 flex flex-col gap-3 translate-y-full"
+        className="fixed w-full z-10 bottom-0 bg-white p-3 py-10 flex flex-col gap-3 translate-y-full"
       >
+        <h5
+          className="p-1 text-center w-[93%] absolute top-0"
+          onClick={() => {
+            setVehiclePanelOpen(false);
+          }}
+        >
+          <i className="text-3xl text-gray-300 ri-arrow-down-wide-line"></i>
+        </h5>
         <h3 className="text-2xl font-semibold mb-2 px-1">Choose a Vehicle</h3>
         <div className="flex w-full items-center justify-between p-3 border-gray-100 active:border-black active:border-2 rounded-xl">
           <img className="h-10" src={uberCar} alt="car" />

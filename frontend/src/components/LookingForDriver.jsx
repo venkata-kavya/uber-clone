@@ -1,13 +1,13 @@
 import React from "react";
 import uberCar3d from "../assets/uberCar3d.png";
 
-const LookingForDriver = () => {
+const LookingForDriver = (props) => {
   return (
     <div>
       <h5
         className="p-1 text-center w-[93%] absolute top-0"
         onClick={() => {
-          props.setVehiclePanelOpen(false);
+          props.setVehicleFound(false);
         }}
       >
         <i className="text-3xl text-gray-300 ri-arrow-down-wide-line"></i>

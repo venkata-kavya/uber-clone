@@ -1,7 +1,7 @@
 import React from "react";
 import uberCar3d from "../assets/uberCar3d.png";
 
-const ConfirmRide = (props) => {
+const LookingForDriver = () => {
   return (
     <div>
       <h5
@@ -12,7 +12,7 @@ const ConfirmRide = (props) => {
       >
         <i className="text-3xl text-gray-300 ri-arrow-down-wide-line"></i>
       </h5>
-      <h3 className="text-2xl font-semibold mb-5">Confirm your Ride</h3>
+      <h3 className="text-2xl font-semibold mb-5">Looking for a Driver</h3>
 
       <div className="flex flex-col gap-2 justify-between items-center">
         <img className="h-20" src={uberCar3d} alt="uber-car" />
@@ -39,18 +39,9 @@ const ConfirmRide = (props) => {
             </div>
           </div>
         </div>
-        <button
-          onClick={() => {
-            props.setVehicleFound(true);
-            props.setConfirmRidePanel(false);
-          }}
-          className="mt-5 w-full bg-green-600 text-white font-semibold p-2 rounded-lg"
-        >
-          Confirm
-        </button>
       </div>
     </div>
   );
 };
 
-export default ConfirmRide;
+export default LookingForDriver;

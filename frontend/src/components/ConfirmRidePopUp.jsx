@@ -1,7 +1,7 @@
 import React from "react";
 import uberUser from "../assets/uberUser.jpg";
 
-const RidePopUp = (props) => {
+const ConfirmRidePopUp = (props) => {
   return (
     <div>
       <h5
@@ -12,7 +12,9 @@ const RidePopUp = (props) => {
       >
         <i className="text-3xl text-gray-300 ri-arrow-down-wide-line"></i>
       </h5>
-      <h3 className="text-2xl font-semibold mb-5">New Ride Available!</h3>
+      <h3 className="text-2xl font-semibold mb-5">
+        Confirm this ride to start
+      </h3>
       <div className="flex items-center justify-between p-3 mt-4 bg-yellow-400 rounded-lg">
         <div className="flex items-center gap-3">
           <img
@@ -50,25 +52,24 @@ const RidePopUp = (props) => {
           </div>
         </div>
         <button
-          onClick={() => {
-            props.setConfirmRidePopUp(true);
-          }}
+          onClick={() => {}}
           className="mt-5 w-full bg-green-600 text-white font-semibold p-2 rounded-lg"
         >
-          Accept
+          Confirm
         </button>
 
         <button
           onClick={() => {
+            props.setConfirmRidePopUp(false);
             props.setRidePopUpPanel(false);
           }}
-          className="mt-2 w-full bg-gray-50 border-1 text-gray-700 font-semibold p-2 rounded-lg"
+          className="mt-2 w-full bg-gray-50 border-1 text-red-500 font-semibold p-2 rounded-lg"
         >
-          Ignore
+          Cancel
         </button>
       </div>
     </div>
   );
 };
 
-export default RidePopUp;
+export default ConfirmRidePopUp;

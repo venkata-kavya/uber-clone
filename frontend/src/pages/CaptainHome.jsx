@@ -6,9 +6,12 @@ import uberMap from "../assets/uberMap.png";
 import uberLogo from "../assets/uberLogo.png";
 import CaptainDetails from "../components/CaptainDetails";
 import RidePopUp from "../components/RidePopUp";
+import ConfirmRidePopUp from "../components/ConfirmRidePopUp";
 
 const CaptainHome = () => {
   const [ridePopUpPanel, setRidePopUpPanel] = useState(true);
+  const [confirmRidePopUp, setConfirmRidePopUp] = useState(false);
+  const confirmRidePopUpRef = useRef(null);
   const ridePopUpPanelRef = useRef(null);
 
   useGSAP(
@@ -24,6 +27,21 @@ const CaptainHome = () => {
       }
     },
     [ridePopUpPanel]
+  );
+
+  useGSAP(
+    function () {
+      if (confirmRidePopUp) {
+        gsap.to(confirmRidePopUpRef.current, {
+          transform: "translateY(0)",
+        });
+      } else {
+        gsap.to(confirmRidePopUpRef.current, {
+          transform: "translateY(100%)",
+        });
+      }
+    },
+    [confirmRidePopUp]
   );
 
   return (
@@ -54,7 +72,20 @@ const CaptainHome = () => {
         ref={ridePopUpPanelRef}
         className="fixed w-full z-10 bottom-0 bg-white p-3 py-10 pt-12 flex flex-col gap-3 translate-y-full"
       >
-        <RidePopUp setRidePopUpPanel={setRidePopUpPanel} />
+        <RidePopUp
+          setRidePopUpPanel={setRidePopUpPanel}
+          setConfirmRidePopUp={setConfirmRidePopUp}
+        />
+      </div>
+
+      <div
+        ref={confirmRidePopUpRef}
+        className="fixed w-full h-screen z-10 bottom-0 bg-white p-3 py-10 pt-12 flex flex-col gap-3 translate-y-full"
+      >
+        <ConfirmRidePopUp
+          setConfirmRidePopUp={setConfirmRidePopUp}
+          setRidePopUpPanel={setRidePopUpPanel}
+        />
       </div>
     </div>
   );

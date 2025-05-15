@@ -1,5 +1,7 @@
 import React from "react";
 import uberUser from "../assets/uberUser.jpg";
+import { Link } from "react-router-dom";
+import CaptainRiding from "../pages/CaptainRiding";
 
 const ConfirmRidePopUp = (props) => {
   return (
@@ -51,12 +53,12 @@ const ConfirmRidePopUp = (props) => {
             </div>
           </div>
         </div>
-        <button
-          onClick={() => {}}
-          className="mt-5 w-full bg-green-600 text-white font-semibold p-2 rounded-lg"
+        <Link
+          to={"/captain-riding"}
+          className="mt-5 w-full flex justify-center  bg-green-600 text-white font-semibold p-2 rounded-lg"
         >
           Confirm
-        </button>
+        </Link>
 
         <button
           onClick={() => {

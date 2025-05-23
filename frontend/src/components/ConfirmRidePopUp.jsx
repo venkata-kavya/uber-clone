@@ -1,11 +1,14 @@
-import React, { useRef, useState } from "react";
+import { useState } from "react";
 import uberUser from "../assets/uberUser.jpg";
 import { Link } from "react-router-dom";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import FinishRide from "./FinishRide";
 
 const ConfirmRidePopUp = (props) => {
+  const [otp, setOtp] = useState();
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div>
       <h5
@@ -19,12 +22,7 @@ const ConfirmRidePopUp = (props) => {
       <h3 className="text-2xl font-semibold mb-5">
         Confirm this ride to start
       </h3>
-      <div
-        className="flex items-center justify-between p-3 mt-4 bg-yellow-400 rounded-lg"
-        onClick={() => {
-          setFinishRidePanel(true);
-        }}
-      >
+      <div className="flex items-center justify-between p-3 mt-4 bg-yellow-400 rounded-lg">
         <div className="flex items-center gap-3">
           <img
             className="h-12 w-12 rounded-full object-cover"
@@ -68,6 +66,8 @@ const ConfirmRidePopUp = (props) => {
             }}
           >
             <input
+              value={otp}
+              onChange={(e) => setOtp(e.target.value)}
               type="text"
               className="bg-[#eee] px-4 py-2 font-mono text-lg rounded-lg w-full mt-5"
               placeholder="Enter OTP"

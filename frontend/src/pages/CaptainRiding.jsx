@@ -16,12 +16,19 @@ const CaptainRiding = () => {
         </Link>
       </div>
 
-      <div className="h-3/5">
+      <div className="h-4/5">
         <img
           className="h-full w-full object-cover"
           src={uberMap}
           alt="uber-map"
         />
+      </div>
+
+      <div className="h-1/5 p-6 bg-yellow-400 flex items-center justify-between">
+        <h4 className="text-xl font-semibold">4 KM away</h4>
+        <button className="bg-green-600 text-white font-semibold p-3 px-10 rounded-lg">
+          Complete Ride
+        </button>
       </div>
     </div>
   );

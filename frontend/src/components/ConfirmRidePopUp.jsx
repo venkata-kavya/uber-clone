@@ -1,9 +1,28 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import uberUser from "../assets/uberUser.jpg";
 import { Link } from "react-router-dom";
-import CaptainRiding from "../pages/CaptainRiding";
+import RidePopUp from "./RidePopUp";
+import FinishRide from "./FinishRide";
 
 const ConfirmRidePopUp = (props) => {
+  const [finishRidePanel, setFinishRidePanel] = useState(false);
+  const finishRidePanelRef = useRef(null);
+
+  useGSAP(
+    function () {
+      if (finishRidePanel) {
+        gsap.to(finishRidePanelRef.current, {
+          transform: "translateY(0)",
+        });
+      } else {
+        gsap.to(finishRidePanelRef.current, {
+          transform: "translateY(100%)",
+        });
+      }
+    },
+    [waitingForDriver]
+  );
+
   return (
     <div>
       <h5
@@ -53,22 +72,43 @@ const ConfirmRidePopUp = (props) => {
             </div>
           </div>
         </div>
-        <Link
-          to={"/captain-riding"}
-          className="mt-5 w-full flex justify-center  bg-green-600 text-white font-semibold p-3 rounded-lg"
-        >
-          Confirm
-        </Link>
 
-        <button
-          onClick={() => {
-            props.setConfirmRidePopUp(false);
-            props.setRidePopUpPanel(false);
-          }}
-          className="mt-2 w-full bg-gray-50 border-1 text-red-500 font-semibold p-3 rounded-lg"
-        >
-          Cancel
-        </button>
+        <div className="mt-6 w-full">
+          <form
+            onSubmit={(e) => {
+              submitHandler(e);
+            }}
+          >
+            <input
+              type="text"
+              className="bg-[#eee] px-4 py-2 font-mono text-lg rounded-lg w-full mt-5"
+              placeholder="Enter OTP"
+            />
+            <Link
+              to={"/captain-riding"}
+              className="mt-5 w-full flex justify-center  bg-green-600 text-white font-semibold p-3 rounded-lg"
+            >
+              Confirm
+            </Link>
+
+            <button
+              onClick={() => {
+                props.setConfirmRidePopUp(false);
+                props.setRidePopUpPanel(false);
+              }}
+              className="mt-2 w-full bg-gray-50 border-1 text-red-500 font-semibold p-3 rounded-lg"
+            >
+              Cancel
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div
+        ref={finishRidePanelRef}
+        className="fixed w-full h-screen z-10 bottom-0 bg-white p-3 py-10 pt-12 flex flex-col gap-3 translate-y-full"
+      >
+        <FinishRide />
       </div>
     </div>
   );

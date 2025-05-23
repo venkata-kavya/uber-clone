@@ -1,28 +1,11 @@
 import React, { useRef, useState } from "react";
 import uberUser from "../assets/uberUser.jpg";
 import { Link } from "react-router-dom";
-import RidePopUp from "./RidePopUp";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import FinishRide from "./FinishRide";
 
 const ConfirmRidePopUp = (props) => {
-  const [finishRidePanel, setFinishRidePanel] = useState(false);
-  const finishRidePanelRef = useRef(null);
-
-  useGSAP(
-    function () {
-      if (finishRidePanel) {
-        gsap.to(finishRidePanelRef.current, {
-          transform: "translateY(0)",
-        });
-      } else {
-        gsap.to(finishRidePanelRef.current, {
-          transform: "translateY(100%)",
-        });
-      }
-    },
-    [waitingForDriver]
-  );
-
   return (
     <div>
       <h5
@@ -36,7 +19,12 @@ const ConfirmRidePopUp = (props) => {
       <h3 className="text-2xl font-semibold mb-5">
         Confirm this ride to start
       </h3>
-      <div className="flex items-center justify-between p-3 mt-4 bg-yellow-400 rounded-lg">
+      <div
+        className="flex items-center justify-between p-3 mt-4 bg-yellow-400 rounded-lg"
+        onClick={() => {
+          setFinishRidePanel(true);
+        }}
+      >
         <div className="flex items-center gap-3">
           <img
             className="h-12 w-12 rounded-full object-cover"
@@ -102,13 +90,6 @@ const ConfirmRidePopUp = (props) => {
             </button>
           </form>
         </div>
-      </div>
-
-      <div
-        ref={finishRidePanelRef}
-        className="fixed w-full h-screen z-10 bottom-0 bg-white p-3 py-10 pt-12 flex flex-col gap-3 translate-y-full"
-      >
-        <FinishRide />
       </div>
     </div>
   );
